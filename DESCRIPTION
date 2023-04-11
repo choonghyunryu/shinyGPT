@@ -1,0 +1,24 @@
+Package: shinyGPT
+Type: Package 
+Title: Shiny app for chat and create images with chatGPT
+Version: 0.1.0.9000
+Date: 2023-04-11
+Authors@R: c(
+  person("Choonghyun", "Ryu",, "choonghyun.ryu@gmail.com", role = c("aut", "cre"))
+  )
+Description: It is a shiny app that can chat, create and transform images using the chatGPT API. Interfaced OpenAI service with bitGPT package.
+Imports: 
+    bitGPT,
+    dplyr,
+    htmltools,
+    shiny,
+    shinybusy,
+    shinyjs
+Author: Choonghyun Ryu [aut, cre]
+Maintainer: Choonghyun Ryu <choonghyun.ryu@gmail.com>
+License: GPL-2 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
+VignetteBuilder: knitr
