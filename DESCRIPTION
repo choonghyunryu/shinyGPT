@@ -1,8 +1,8 @@
 Package: shinyGPT
 Type: Package 
 Title: Shiny app for chat and create images with chatGPT
-Version: 0.1.0.9000
-Date: 2023-04-11
+Version: 0.1.1.9000
+Date: 2023-04-13
 Authors@R: c(
   person("Choonghyun", "Ryu",, "choonghyun.ryu@gmail.com", role = c("aut", "cre"))
   )
