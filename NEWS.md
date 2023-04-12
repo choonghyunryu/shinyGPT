@@ -2,7 +2,7 @@
 
 ## NEW FEATURES
 
-* Add vignette for chatGPT with shinyGPT. (#01).
+* Add vignette "프롬프트 예제" for chatGPT with shinyGPT. (#01).
     
     
     
