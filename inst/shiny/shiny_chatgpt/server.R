@@ -25,6 +25,35 @@ function(input, output, session) {
       bitGPT:::show.messages(answer, type = "viewer", is_browse = FALSE)
       includeHTML("answer.html")
     })
+
+    ## 프롬프트 초기화
+    updateTextInput(session, "chat_prompt", value = "")
+  })
+
+  output$ui_prompt <- renderUI({
+    tagList(
+      column(
+        width = 9,
+        tagAppendAttributes(textInput("chat_prompt",
+                  label = NULL,
+                  value = "",
+                  width = "100%",
+                  placeholder = "프롬프트를 입력하세요."),
+                  `data-proxy-click` = "chat_message")
+      ),
+      column(
+        width = 3,
+        actionButton("chat_message", label = "채팅",
+                     icon = icon("comment"),
+                     class = "btn-primary",
+                     style = "background-color: #90CAF9; border: none"),
+
+        actionButton("chat_initial", label = "초기화",
+                     icon = icon("trash"),
+                     class = "btn-primary",
+                     style = "background-color: #90CAF9; border: none")
+      )
+    )
   })
 
   # 출력된 HTML 코드가 업데이트 될 때마다 맨 아래로 스크롤 이동

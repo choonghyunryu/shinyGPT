@@ -1,4 +1,12 @@
-# shinyGPT 0.1.1.9000
+# shinyGPT 0.1.2.9000
+
+## NEW FEATURES
+
+* 채팅 프롬프트에 엔터키 입력으로 실행 구현. (#01).    
+
+
+
+# shinyGPT 0.1.1.
 
 ## NEW FEATURES
 
