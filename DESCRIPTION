@@ -1,14 +1,14 @@
 Package: shinyGPT
 Type: Package 
 Title: Shiny app for chat and create images with chatGPT
-Version: 0.1.2.9000
-Date: 2023-04-14
+Version: 0.1.3.9000
+Date: 2023-04-15
 Authors@R: c(
   person("Choonghyun", "Ryu",, "choonghyun.ryu@gmail.com", role = c("aut", "cre"))
   )
 Description: It is a shiny app that can chat, create and transform images using the chatGPT API. Interfaced OpenAI service with bitGPT package.
 Imports: 
-    bitGPT,
+    bitGPT (>= 0.3.8.9000),
     dplyr,
     htmltools,
     shiny,

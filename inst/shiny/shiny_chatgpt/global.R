@@ -1,10 +1,10 @@
 ## 사용하는 패키지 -------------------------------------------------------------
-library("bitGPT")
-library("shiny")
-library("dplyr")
-library("htmltools")
-library("shinybusy")
-library("shinyjs")
+suppressPackageStartupMessages(library("bitGPT"))
+suppressPackageStartupMessages(library("shiny"))
+suppressPackageStartupMessages(library("dplyr"))
+suppressPackageStartupMessages(library("htmltools"))
+suppressPackageStartupMessages(library("shinybusy"))
+suppressPackageStartupMessages(library("shinyjs"))
 
 ## 채팅 메시지 초기화 ----------------------------------------------------------
 bitGPT:::unset_gptenv("chat_messages")

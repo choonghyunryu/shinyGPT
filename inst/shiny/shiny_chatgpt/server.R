@@ -23,17 +23,19 @@ function(input, output, session) {
 
     output$chat_created <- renderUI({
       bitGPT:::show.messages(answer, type = "viewer", is_browse = FALSE)
-      includeHTML("answer.html")
+      includeHTML(paste(tempdir(), "answer.html", sep = "/"))
     })
 
     ## 프롬프트 초기화
     updateTextInput(session, "chat_prompt", value = "")
   })
 
+
+  ## 채팅 UI 정의 --------------------------------------------------------------
   output$ui_prompt <- renderUI({
     tagList(
       column(
-        width = 9,
+        width = 8,
         tagAppendAttributes(textInput("chat_prompt",
                   label = NULL,
                   value = "",
@@ -42,7 +44,7 @@ function(input, output, session) {
                   `data-proxy-click` = "chat_message")
       ),
       column(
-        width = 3,
+        width = 4,
         actionButton("chat_message", label = "채팅",
                      icon = icon("comment"),
                      class = "btn-primary",
@@ -51,7 +53,10 @@ function(input, output, session) {
         actionButton("chat_initial", label = "초기화",
                      icon = icon("trash"),
                      class = "btn-primary",
-                     style = "background-color: #90CAF9; border: none")
+                     style = "background-color: #90CAF9; border: none"),
+
+        downloadButton("downChat", label = "파일", class = "butt")
+        # tags$head(tags$style(".butt{background:#90CAF9;} .butt{border: none;}"))
       )
     )
   })
@@ -62,9 +67,16 @@ function(input, output, session) {
   })
 
 
-  ## 메시지 초기화 -------------------------------------------------------------
+  ## 채팅 메시지 초기화 -------------------------------------------------------------
   observeEvent(input$chat_initial, {
     bitGPT:::unset_gptenv("chat_messages")
+  })
+
+
+  ## 이미지 프롬프트 초기화 -------------------------------------------------------------
+  observeEvent(input$image_initial, {
+    ## 프롬프트 초기화
+    updateTextInput(session, "img_prompt", value = "")
   })
 
 
@@ -120,10 +132,24 @@ function(input, output, session) {
   ## 이미지 받기 핸들러 --------------------------------------------------------
   output$downImage <- downloadHandler(
     filename = function() {
-      input$fname_image
+      id <- sprintf("%07d", round(runif(1) * 10 ^ 7))
+      paste("image-", id, ".png", sep = "")
     },
     content = function(file) {
       file.copy(paste(tempdir(), Sys.getenv("IMG_NAME"), sep = "/"), file)
-    }
+    },
+    contentType = "image/png"
+  )
+
+  ## 채팅 받기 핸들러 --------------------------------------------------------
+  output$downChat <- downloadHandler(
+    filename = function() {
+      id <- sprintf("%07d", round(runif(1) * 10 ^ 7))
+      paste("chat-", id, ".html", sep = "")
+    },
+    content = function(file) {
+      file.copy(paste(tempdir(), "answer.html", sep = "/"), file)
+    },
+    contentType = "text/html"
   )
 }

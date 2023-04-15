@@ -11,7 +11,14 @@ navbarPage(
       fluidRow(
         add_busy_spinner(spin = "fading-circle"),
         column(
-          width = 8,
+          width = 1,
+          actionButton("image_initial", label = "삭제",
+                       icon = icon("eraser"),
+                       class = "btn-primary",
+                       style = "background-color: #90CAF9; border: none")
+        ),
+        column(
+          width = 7,
           textInput("img_prompt",
                     label = NULL,
                     value = "",
@@ -31,25 +38,8 @@ navbarPage(
                        class = "btn-primary",
                        style = "background-color: #90CAF9; border: none"),
 
-          shinyWidgets::prettySwitch(inputId = "openDownload",
-                                     label = "다운로드",
-                                     status = "success", fill = TRUE, inline = TRUE)
-        )
-      ),
-
-      conditionalPanel(
-        style = "padding-top:0px;",
-        condition = "input.openDownload == 1",
-        fluidRow(
-          column(
-            width = 4,
-            textInput("fname_image", "파일 이름:", value = "")
-          ),
-          column(
-            width = 2,
-            downloadButton("downImage", "파일 받기",
-                           style = "margin-top: 25px")
-          )
+          downloadButton("downImage", label = "파일", class = "butt"),
+          tags$head(tags$style(".butt{background:#90CAF9;} .butt{border: none;}"))
         )
       ),
 
