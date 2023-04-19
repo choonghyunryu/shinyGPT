@@ -1,78 +1,107 @@
-navbarPage(
-  theme = shinythemes::shinytheme("cerulean"),
-  "shinyGPT",
+##==============================================================================
+## 02.01. Right controller
+##==============================================================================
+controlbar_menu <- controlbarMenu(
+  id = "controlbarMenu",
+  controlbarItem(
+    icon = icon("paintbrush"),
+    title = "Skin",
+    tags$head(tags$script(js_change_skin)),
+    selectInput(
+      inputId = "skin_color",
+      label = "스킨 색상",
+      c("블루" = "blue", "오렌지" = "yellow", "화이트" = "black",
+        "퍼플" = "purple", "그린" = "green", "레드" = "red")
+    )
+  )
+)
 
-  ## 이미지 생성 및 변형 UI ----------------------------------------------------
-  tabPanel(
-    "무엇이든 그려보세요",
-    mainPanel(
-      style = "padding-top:10px;padding-bottom:0px",
+##==============================================================================
+## Define header
+##==============================================================================
+header <- dashboardHeader(
+  title = tagList(
+    span("shinyGPT")),
 
-      fluidRow(
-        add_busy_spinner(spin = "fading-circle"),
-        column(
-          width = 1,
-          actionButton("image_initial", label = "삭제",
-                       icon = icon("eraser"),
-                       class = "btn-primary",
-                       style = "background-color: #90CAF9; border: none")
-        ),
-        column(
-          width = 7,
-          textInput("img_prompt",
-                    label = NULL,
-                    value = "",
-                    width = "100%",
-                    placeholder = "그림 그릴 프롬프트를 입력하세요.")
-        ),
+  leftUi = tagList(
+    dropdownBlock(
+      id = "set_images",
+      title = "Setup Images",
+      icon = icon("sliders"),
+      badgeStatus = NULL,
+      prettyRadioButtons(
+        inputId = "img_size",
+        label = "이미지 크기:",
+        choices = c("1024x1024" = "1024x1024",
+                    "512x512" = "512x512",
+                    "256x256" = "256x256"))
+    )
+  )
+)
 
-        column(
-          width = 4,
-          actionButton("draw_image", label = "생성",
-                       icon = icon("paintbrush"),
-                       class = "btn-primary",
-                       style = "background-color: #90CAF9; border: none"),
 
-          actionButton("variation_image", label = "변형",
-                       icon = icon("gears"),
-                       class = "btn-primary",
-                       style = "background-color: #90CAF9; border: none"),
+##==============================================================================
+## Define sidebar
+##==============================================================================
+sidebar <- dashboardSidebar(
+  id = "gpt_sidebar",
+  sidebarMenu(
+    menuItem("무엇이든 물어보세요", tabName = "tab_chat",  icon = icon("comments")),
+    menuItem("무엇이든 그려보세요", tabName = "tab_image", icon = icon("image"))
+  )
+)
 
-          downloadButton("downImage", label = "파일", class = "butt"),
-          tags$head(tags$style(".butt{background:#90CAF9;} .butt{border: none;}"))
-        )
-      ),
 
-      wellPanel(
-        imageOutput("img_created",
-                    height = "512px")
-      ),
-      width = 12
-    ),
-    icon = icon("image")
+################################################################################
+## 04. Body structures
+################################################################################
+##==============================================================================
+## 04.01. Left side menus
+##==============================================================================
+body <- dashboardBody(
+  ## Spinner somewhere in UI
+  add_busy_spinner(
+    spin = "fading-circle",
+    margins = c(50, 50),
+    height = "60px",
+    width  = "60px"
   ),
 
-  ## 채팅 완성하기 UI ----------------------------------------------------------
-  tabPanel(
-    "무엇이든 물어보세요",
-    useShinyjs(),
-    mainPanel(
-      add_busy_spinner(spin = "fading-circle"),
-      style = "padding-top:10px;padding-bottom:0px",
+  useShinyjs(),
 
-      wellPanel(
-        useShinyjs(), # shinyjs 라이브러리 사용
-        htmlOutput("chat_created")
-      ),
+  # tags$script(HTML("$('body').addClass('fixed');")),
 
-      fluidRow(
-        tags$head(tags$script(HTML(jscode))),
-        uiOutput("ui_prompt")
-
-      ),
-      width = 12
+  tabItems(
+    tabItem(
+      tabName = "tab_chat",
+      uiOutput("ui_chat")
     ),
-    icon = icon("comments")
+    tabItem(
+      tabName = "tab_image",
+      uiOutput("ui_image")
+    )
   )
+)
+
+ui <- dashboardPage(
+  useShinyjs(),
+
+  header = header,
+  sidebar = sidebar,
+
+  controlbar = dashboardControlbar(
+    id = "filters",
+    width = 300,
+    skin = "dark",
+    controlbar_menu
+  ),
+  body = body,
+
+  footer = dashboardFooter(
+    left = "with bitGPT packages",
+    right = "bitR, 2023"
+  ),
+
+  skin = 'blue'
 )
 
