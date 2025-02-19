@@ -60,3 +60,10 @@ js_change_skin <- "Shiny.addCustomMessageHandler('change_skin', function(skin) {
         document.body.className = skin;
        });"
 
+
+js_scroll <- "$(document).on('shiny:value', function(event) {
+  // Scroll down after model update
+  if (event.target.id === 'chat_created') {
+    window.scrollTo(0,document.body.scrollHeight);
+  }
+});"

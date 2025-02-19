@@ -15,7 +15,7 @@ Shiny UI/UX 기반에서 수행할 수 있는 웹 애플리케이션을 수행�
 현재 구현된 shinyGPT의 기능을 다음과 같습니다.
 
 - 무엇이든 그려보세요
-  - 이미지 생성 with Dall-E 2
+  - 이미지 생성 with Dall-E 3
   - 이미지 변형 with Dall-E 2
   - 이미지 저장 with Dall-E 2
 - 무엇이든 물어보세요
@@ -44,7 +44,7 @@ devtools::install_github("choonghyunryu/shinyGPT")
 ## 준비사항
 
 `bitGPT` 패키지와 `shinyGPT` 패키지를 사용하기 위해서는 OpenAI API key와
-네이버 파파고 번역 API key가 필요합니다.
+DeepL 번역 API key가 필요합니다.
 
 두 가지 모두 준비되었다면 다음과 같이 key를 등록합니다. API key는
 개인정보이기 때문에 공개해서는 안됩니다. 그래서 아래의 예제에서는
@@ -56,8 +56,8 @@ library("bitGPT")
 # 실제 사용자가 할당받은 openai API key를 사용합니다.
 regist_openai_key("XXXXXXXXXXX")
 
-# 실제 사용자가 할당받은 Naver API key를 사용합니다.
-regist_naver_key(client_id = "XXXXXXXXXXX", client_secret = "XXXXXXXXXXX")
+# 실제 사용자가 할당받은 DeepL API key를 사용합니다.
+regist_deepl_key("XXXXXXXXXXX")
 ```
 
 ## 앱의 실행

@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -34,7 +34,7 @@ knitr::include_graphics('img/dog_cat_kor.png')
 ## ----image-5, echo=FALSE, out.width='65%', fig.align='center', fig.pos="!h", fig.cap="강과 바다가 만나는 지점에서 낚시를 하는 젊은 청년"----
 knitr::include_graphics('img/fisher.png')
 
-## ---- echo=FALSE, eval=TRUE---------------------------------------------------
+## ----echo=FALSE, eval=TRUE----------------------------------------------------
 htmltools::p(align = "middle",
   htmltools::img(src = "img/city_garden_variation_01.png", width = "45%"),
   htmltools::img(src = "img/city_garden_variation_02.png",  width = "45%")

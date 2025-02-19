@@ -5,6 +5,7 @@ output$ui_chat <- renderUI({
         width = 12,
         wellPanel(
           style = "padding-top:10px; padding-left:10px; padding-right:10px; min-height: 620px; max-height: 620px; overflow:auto;",
+          tags$script(js_scroll),
           htmlOutput("chat_created")
         )
       ),
@@ -45,13 +46,13 @@ observeEvent(input$chat_message, {
       rvest::html_node(
         xml2::read_html(paste(tempdir(), "answer.html", sep = "/")), "body"),
                      file = paste(tempdir(), "answer2.html", sep = "/"))
+
     includeHTML(paste(tempdir(), "answer2.html", sep = "/"))
   })
 
   ## 프롬프트 초기화
   updateTextInput(session, "chat_prompt", value = "")
 })
-
 
 ## 채팅 UI 정의 --------------------------------------------------------------
 output$ui_prompt <- renderUI({
@@ -72,8 +73,8 @@ output$ui_prompt <- renderUI({
                    class = "btn-primary",
                    style = "background-color: #90CAF9; border: none"),
 
-      actionButton("chat_initial", label = "초기화",
-                   icon = icon("trash"),
+      actionButton("chat_initial", label = "새토픽",
+                   icon = icon("broom-ball"),
                    class = "btn-primary",
                    style = "background-color: #90CAF9; border: none"),
 

@@ -1,4 +1,12 @@
-# shinyGPT 0.2.0.9000
+# shinyGPT 0.3.0.9000
+
+## MAJOR CHANGES
+
+* 이미지 생성에 DALL-E-3 모델 사용 (#08)
+
+
+
+# shinyGPT 0.2.0
 
 ## NEW FEATURES
 
