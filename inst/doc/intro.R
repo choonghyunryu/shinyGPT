@@ -16,8 +16,8 @@ knitr::opts_chunk$set(
 # # 실제 사용자가 할당받은 openai API key를 사용합니다.
 # regist_openai_key("XXXXXXXXXXX")
 # 
-# # 실제 사용자가 할당받은 Naver API key를 사용합니다.
-# regist_naver_key(client_id = "XXXXXXXXXXX", client_secret = "XXXXXXXXXXX")
+# # 실제 사용자가 할당받은 DeepL API key를 사용합니다.
+# regist_deepl_key("XXXXXXXXXXX")
 
 ## ----eval=FALSE---------------------------------------------------------------
 # library(shinyGPT)

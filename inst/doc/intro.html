@@ -344,9 +344,9 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h2>shinyGPT에 대하여</h2>
 <p><code>shinyGPT(Shiny chatGPT Application)</code>는
 <code>OpenAI API</code>를 이용해서 chatGPT의 기능과
-<code>Dall-E 2</code> 기반으로 이미지를 생성하고 변형하는 작업을 Shiny
-UI/UX 기반에서 수행할 수 있는 웹 애플리케이션을 수행하는 R
-패키지입니다.</p>
+<code>Dall-E 3</code>, <code>Dall-E 2</code> 기반으로 이미지를 생성하고
+변형하는 작업을 Shiny UI/UX 기반에서 수행할 수 있는 웹 애플리케이션을
+수행하는 R 패키지입니다.</p>
 <p>이 애플리케이션은 <code>bitGPT</code> 패키지의 응용 사례를 위해서
 개발되었습니다.</p>
 </div>
@@ -356,7 +356,7 @@ UI/UX 기반에서 수행할 수 있는 웹 애플리케이션을 수행하는 R
 <ul>
 <li>무엇이든 그려보세요
 <ul>
-<li>이미지 생성 with Dall-E 2</li>
+<li>이미지 생성 with Dall-E 3</li>
 <li>이미지 변형 with Dall-E 2</li>
 <li>이미지 저장 with Dall-E 2</li>
 </ul></li>
@@ -384,7 +384,7 @@ UI/UX 기반에서 수행할 수 있는 웹 애플리케이션을 수행하는 R
 <div id="준비사항" class="section level2">
 <h2>준비사항</h2>
 <p><code>bitGPT</code> 패키지와 <code>shinyGPT</code> 패키지를 사용하기
-위해서는 OpenAI API key와 네이버 파파고 번역 API key가 필요합니다.</p>
+위해서는 OpenAI API key와 DeepL 번역 API key가 필요합니다.</p>
 <p>두 가지 모두 준비되었다면 다음과 같이 key를 등록합니다. API key는
 개인정보이기 때문에 공개해서는 안됩니다. 그래서 아래의 예제에서는
 “XXXXXXXXXXX”로 기술했지만, 실제 사용자의 key를 입력해야 합니다.</p>
@@ -393,8 +393,8 @@ UI/UX 기반에서 수행할 수 있는 웹 애플리케이션을 수행하는 R
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># 실제 사용자가 할당받은 openai API key를 사용합니다.</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">regist_openai_key</span>(<span class="st">&quot;XXXXXXXXXXX&quot;</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># 실제 사용자가 할당받은 Naver API key를 사용합니다.</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">regist_naver_key</span>(<span class="at">client_id =</span> <span class="st">&quot;XXXXXXXXXXX&quot;</span>, <span class="at">client_secret =</span> <span class="st">&quot;XXXXXXXXXXX&quot;</span>)</span></code></pre></div>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># 실제 사용자가 할당받은 DeepL API key를 사용합니다.</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">regist_deepl_key</span>(<span class="st">&quot;XXXXXXXXXXX&quot;</span>)</span></code></pre></div>
 </div>
 <div id="앱의-실행" class="section level2">
 <h2>앱의 실행</h2>
